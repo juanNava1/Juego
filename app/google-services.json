@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1094193377658",
+    "project_id": "tdah-a6af9",
+    "storage_bucket": "tdah-a6af9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094193377658:android:12385d7860d530863666c3",
+        "android_client_info": {
+          "package_name": "com.example.siluetas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094193377658-2d15i1eui2rdpr5ubno603vl2flejkrt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkVt_GjZxm-kxGgRDDOzsG4qUW22mh2rE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094193377658-2d15i1eui2rdpr5ubno603vl2flejkrt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
