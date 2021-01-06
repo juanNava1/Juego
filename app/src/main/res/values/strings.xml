@@ -16,7 +16,7 @@
     <string name="register_password">Ingresa tu password</string>
     <string name="registerme">Aceptar</string>
     <string name="back_to_login">Cancelar</string>
-    <!-- -->
+    <!--Navigation drawer-->
     <string name="app_name">Siluetas</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -25,11 +25,18 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-
-    <string name="aceptar">Aceptar</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_gallery">Juego de sombras</string>
+    <string name="menu_slideshow">Juego de sonidos</string>
+    <string name="menu_shadows">Juego de sombras</string>
+    <string name="menu_sounds">Juego de sonidos</string>
+    <!-- Shadows game -->
     <string name="animal_image">Imagen de animal</string>
     <string name="question">¿Qué animal es?</string>
+    <!-- Sounds game -->
+    <string name="sounds_header">¿Qué animal hace el sonido?</string>
+
+    <!-- Generic  -->
+    <string name="aceptar">Aceptar</string>
+    <string name="sound_on">Sound on</string>
 </resources>

@@ -4,19 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.slideshow.SlideshowFragment">
+    tools:context=".ui.slideshow.SlideshowFragment"
+    android:background="@color/white">
 
-    <TextView
-        android:id="@+id/text_slideshow"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/text_slideshow"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:text="@string/sounds_header" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSound"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:contentDescription="@string/sound_on"
+                android:src="@android:drawable/ic_lock_silent_mode_off"
+                android:tint="#000000" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageButton
+                android:id="@+id/imageButtonLeon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/animal_image"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sonido_leon" />
+
+            <ImageButton
+                android:id="@+id/imageButtonGato"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/animal_image"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sonido_gato"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+            <ImageButton
+                android:id="@+id/imageButtonOso"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/animal_image"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sonido_oso" />
+            <ImageButton
+                android:id="@+id/imageButtonMono"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/animal_image"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sonido_mono"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+            <ImageButton
+                android:id="@+id/imageButtonPuerquito"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/animal_image"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sonido_puerquito" />
+            <ImageButton
+                android:id="@+id/imageButtonElefante"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:contentDescription="@string/animal_image"
+                android:scaleType="fitCenter"
+                android:src="@drawable/sonido_elefante"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
