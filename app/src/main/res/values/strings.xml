@@ -1,4 +1,22 @@
 <resources>
+    <!-- Login -->
+
+    <string name="welcome">Bienvenido</string>
+    <string name="password">Ingresa tu contraseña</string>
+    <string name="email">Ingresa tu correo electrónico</string>
+    <string name="login">Entrar</string>
+    <string name="register">Registrarme</string>
+    <!-- Register -->
+    <string name="register_header">Para registrarte, completa el formulario</string>
+    <string name="name">Ingresa tu nombre</string>
+    <string name="old">Ingresa tu edad</string>
+    <string name="country">Ingresa tu país</string>
+    <string name="state">Ingresa tu estado de residencia</string>
+    <string name="register_email">Ingresa tu e-mail</string>
+    <string name="register_password">Ingresa tu password</string>
+    <string name="registerme">Aceptar</string>
+    <string name="back_to_login">Cancelar</string>
+    <!-- -->
     <string name="app_name">Siluetas</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -10,4 +28,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="aceptar">Aceptar</string>
+    <string name="animal_image">Imagen de animal</string>
+    <string name="question">¿Qué animal es?</string>
 </resources>
