@@ -35,6 +35,9 @@
     <string name="question">¿Qué animal es?</string>
     <!-- Sounds game -->
     <string name="sounds_header">¿Qué animal hace el sonido?</string>
+    <string name="puntuation">Puntuación actual: </string>
+    <string name="high_puntuation"> Puntuación más alta: </string>
+    <string name="cero">0</string>
 
     <!-- Generic  -->
     <string name="aceptar">Aceptar</string>

@@ -42,7 +42,52 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/puntuacion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:textSize="15sp"
+                android:text="@string/high_puntuation"
+                android:layout_marginLeft="20dp" />
+            <TextView
+                android:id="@+id/puntuacion_alta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="@string/cero"/>
 
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/puntuacion_actual"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:text="@string/puntuation"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/puntuacion_actual_numero"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -51,7 +96,7 @@
             android:layout_marginTop="20dp">
 
             <ImageButton
-                android:id="@+id/imageButtonLeon"
+                android:id="@+id/leon"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
@@ -63,7 +108,7 @@
                 android:src="@drawable/sonido_leon" />
 
             <ImageButton
-                android:id="@+id/imageButtonGato"
+                android:id="@+id/gato"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
@@ -83,7 +128,7 @@
             android:gravity="center"
             android:layout_marginTop="20dp">
             <ImageButton
-                android:id="@+id/imageButtonOso"
+                android:id="@+id/oso"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
@@ -94,7 +139,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/sonido_oso" />
             <ImageButton
-                android:id="@+id/imageButtonMono"
+                android:id="@+id/mono"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
@@ -114,7 +159,7 @@
             android:gravity="center"
             android:layout_marginTop="20dp">
             <ImageButton
-                android:id="@+id/imageButtonPuerquito"
+                android:id="@+id/puerquito"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
@@ -125,7 +170,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/sonido_puerquito" />
             <ImageButton
-                android:id="@+id/imageButtonElefante"
+                android:id="@+id/elefante"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"

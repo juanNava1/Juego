@@ -23,6 +23,7 @@ import com.example.siluetas.R;
 import com.example.siluetas.RegisterActivity;
 import com.example.siluetas.databinding.ActivityLoginBinding;
 import com.example.siluetas.databinding.FragmentSlideshowBinding;
+import com.example.siluetas.model.Score;
 
 import static com.example.siluetas.R.raw.gato;
 
@@ -30,6 +31,10 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
 
     private FragmentSlideshowBinding binding;
     private String[] animales = { "leon", "gato", "oso", "mono", "puerquito", "elefante" };
+    private int puntuacion = 0;
+    private String high_puntuation;
+    private int puntuacion_mayor_actual;
+    private Score score;
 
     MainActivity main;
 
@@ -37,14 +42,91 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         SlideshowViewModel slideshowViewModel = ViewModelProviders.of(this).get(SlideshowViewModel.class);
         binding = FragmentSlideshowBinding.inflate(getLayoutInflater());
         main = (MainActivity) getParentFragment().getActivity();
-
         int numero = generarAleatorio();
         final String sonido = animales[numero];
 
+        score = new Score();
+
+        binding.leon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( sonido == "leon" ){
+                    puntuacion++;
+                    binding.puntuacionActualNumero.setText("" + puntuacion);
+                    Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.gato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( sonido == "gato" ){
+                    puntuacion += 1;
+                    binding.puntuacionActualNumero.setText("" + puntuacion);
+                    Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.oso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( sonido == "oso" ){
+                    puntuacion += 1;
+                    binding.puntuacionActualNumero.setText("" + puntuacion);
+                    Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.mono.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( sonido == "mono" ){
+                    puntuacion += 1;
+                    binding.puntuacionActualNumero.setText("" + puntuacion);
+                    Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.puerquito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( sonido == "puerquito" ){
+                    puntuacion += 1;
+                    binding.puntuacionActualNumero.setText("" + puntuacion);
+                    Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        binding.elefante.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( sonido == "elefante" ){
+                    puntuacion += 1;
+                    binding.puntuacionActualNumero.setText("" + puntuacion);
+                    Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
+                    if( score.getScore_sounds() != null ){
+                        score.setScore_sounds(high_puntuation);
+                    }
+                }
+            }
+        });
         binding.imageButtonSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(main.getApplicationContext(), sonido, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(main.getApplicationContext(), sonido, Toast.LENGTH_SHORT).show();
                 MediaPlayer mediaplayer;
                 switch (sonido){
                     case "leon":
