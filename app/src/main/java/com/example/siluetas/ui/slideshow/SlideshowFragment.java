@@ -56,6 +56,11 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
+                    if( score.getScore_sounds() == null ){
+                        score.setScore_sounds(high_puntuation);
+                        score.insert(SlideshowFragment.this.getContext());
+                    }
                 }
             }
         });
@@ -68,6 +73,11 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
+                    if( score.getScore_sounds() == null ){
+                        score.setScore_sounds(high_puntuation);
+                        score.insert(SlideshowFragment.this.getContext());
+                    }
                 }
             }
         });
@@ -80,6 +90,11 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
+                    if( score.getScore_sounds() == null ){
+                        score.setScore_sounds(high_puntuation);
+                        score.insert(SlideshowFragment.this.getContext());
+                    }
                 }
             }
         });
@@ -92,6 +107,11 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
+                    if( score.getScore_sounds() == null ){
+                        score.setScore_sounds(high_puntuation);
+                        score.insert(SlideshowFragment.this.getContext());
+                    }
                 }
             }
         });
@@ -104,6 +124,11 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
+                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
+                    if( score.getScore_sounds() == null ){
+                        score.setScore_sounds(high_puntuation);
+                        score.insert(SlideshowFragment.this.getContext());
+                    }
                 }
             }
         });
@@ -117,8 +142,9 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
                     high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    if( score.getScore_sounds() != null ){
+                    if( score.getScore_sounds() == null ){
                         score.setScore_sounds(high_puntuation);
+                        score.insert(SlideshowFragment.this.getContext());
                     }
                 }
             }
