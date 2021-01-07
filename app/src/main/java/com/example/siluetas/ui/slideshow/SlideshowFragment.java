@@ -2,10 +2,12 @@ package com.example.siluetas.ui.slideshow;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,34 +29,59 @@ import static com.example.siluetas.R.raw.gato;
 public class SlideshowFragment extends Fragment implements View.OnClickListener {
 
     private FragmentSlideshowBinding binding;
-    private SlideshowViewModel slideshowViewModel;
     private String[] animales = { "leon", "gato", "oso", "mono", "puerquito", "elefante" };
-    private MediaPlayer mediaPlayer;
+
     MainActivity main;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel = ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        SlideshowViewModel slideshowViewModel = ViewModelProviders.of(this).get(SlideshowViewModel.class);
         binding = FragmentSlideshowBinding.inflate(getLayoutInflater());
-        //View view = binding.getRoot();
         main = (MainActivity) getParentFragment().getActivity();
+
+        int numero = generarAleatorio();
+        final String sonido = animales[numero];
 
         binding.imageButtonSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                    Toast.makeText(main.getApplicationContext(),"Ese no es el animal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(main.getApplicationContext(), sonido, Toast.LENGTH_SHORT).show();
+                MediaPlayer mediaplayer;
+                switch (sonido){
+                    case "leon":
+                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.leon);
+                        mediaplayer.start();
+                        break;
+                    case "gato":
+                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.gato);
+                        mediaplayer.start();
+                        break;
+                    case "oso":
+                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.oso);
+                        mediaplayer.start();
+                        break;
+                    case "mono":
+                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.mono);
+                        mediaplayer.start();
+                        break;
+                    case "puerquito":
+                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.puerquito);
+                        mediaplayer.start();
+                        break;
+                    case "elefante":
+                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.elefante);
+                        mediaplayer.start();
+                        break;
+                }
             }
         });
-
-        return (root);
+        return binding.getRoot();
     }
 
     @Override
     public void onClick(View v) {
 
-        //MediaPlayer mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.leon);
-        //mediaplayer.start();
-        //Toast.makeText(getActivity().getContext(),"Sound on", Toast.LENGTH_LONG).show();
+    }
+    private int generarAleatorio(){
+        return (int) ( Math.random() * animales.length );
     }
 }
