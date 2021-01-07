@@ -25,8 +25,7 @@ import com.example.siluetas.R;
 
 import org.w3c.dom.Text;
 
-public class GalleryFragment extends Fragment
-        implements View.OnClickListener{
+public class GalleryFragment extends Fragment implements View.OnClickListener{
 
     private GalleryViewModel galleryViewModel;
     private String[] nombre_animal={"tucan","caballo","perro","gato","conejo","leon","pato","rinoceronte"};
@@ -39,10 +38,8 @@ public class GalleryFragment extends Fragment
     private ImageView miimagen;
     MainActivity main;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        galleryViewModel = ViewModelProviders.of(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         Componentes(root);
         main = (MainActivity) getParentFragment().getActivity();
