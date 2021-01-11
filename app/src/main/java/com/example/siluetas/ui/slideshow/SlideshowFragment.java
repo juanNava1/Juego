@@ -20,21 +20,22 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.siluetas.LoginActivity;
 import com.example.siluetas.MainActivity;
 import com.example.siluetas.R;
-import com.example.siluetas.RegisterActivity;
-import com.example.siluetas.databinding.ActivityLoginBinding;
 import com.example.siluetas.databinding.FragmentSlideshowBinding;
 import com.example.siluetas.model.Score;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-import static com.example.siluetas.R.raw.gato;
 
 public class SlideshowFragment extends Fragment implements View.OnClickListener {
 
     private FragmentSlideshowBinding binding;
     private String[] animales = { "leon", "gato", "oso", "mono", "puerquito", "elefante" };
     private int puntuacion = 0;
-    private String high_puntuation;
+    private String score_sounds, high_puntuation;
     private int puntuacion_mayor_actual;
     private Score score;
+    private String sonido;
+    private int numero;
 
     MainActivity main;
 
@@ -42,9 +43,8 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         SlideshowViewModel slideshowViewModel = ViewModelProviders.of(this).get(SlideshowViewModel.class);
         binding = FragmentSlideshowBinding.inflate(getLayoutInflater());
         main = (MainActivity) getParentFragment().getActivity();
-        int numero = generarAleatorio();
-        final String sonido = animales[numero];
-
+        numero = generarAleatorio();
+        sonido = animales[numero];
         score = new Score();
 
         binding.leon.setOnClickListener(new View.OnClickListener() {
@@ -54,13 +54,12 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     puntuacion++;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                    animalGenerate();
                 }else {
-                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
-                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    if( score.getScore_sounds() == null ){
-                        score.setScore_sounds(high_puntuation);
-                        score.insert(SlideshowFragment.this.getContext());
-                    }
+                    Toast.makeText(main.getApplicationContext(), score_sounds, Toast.LENGTH_SHORT).show();
+                    score_sounds = binding.puntuacionActualNumero.getText().toString();
+                    score.setScore_sounds(score_sounds);
+                    score.insert(SlideshowFragment.this.getContext());
                 }
             }
         });
@@ -71,13 +70,12 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                    animalGenerate();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
                     high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    if( score.getScore_sounds() == null ){
-                        score.setScore_sounds(high_puntuation);
-                        score.insert(SlideshowFragment.this.getContext());
-                    }
+                    score.setScore_sounds(high_puntuation);
+                    score.insert(SlideshowFragment.this.getContext());
                 }
             }
         });
@@ -88,13 +86,12 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                    animalGenerate();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
                     high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    if( score.getScore_sounds() == null ){
-                        score.setScore_sounds(high_puntuation);
-                        score.insert(SlideshowFragment.this.getContext());
-                    }
+                    score.setScore_sounds(high_puntuation);
+                    score.insert(SlideshowFragment.this.getContext());
                 }
             }
         });
@@ -105,13 +102,12 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                    animalGenerate();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
                     high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    if( score.getScore_sounds() == null ){
-                        score.setScore_sounds(high_puntuation);
-                        score.insert(SlideshowFragment.this.getContext());
-                    }
+                    score.setScore_sounds(high_puntuation);
+                    score.insert(SlideshowFragment.this.getContext());
                 }
             }
         });
@@ -122,13 +118,12 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                    animalGenerate();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
                     high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    if( score.getScore_sounds() == null ){
-                        score.setScore_sounds(high_puntuation);
-                        score.insert(SlideshowFragment.this.getContext());
-                    }
+                    score.setScore_sounds(high_puntuation);
+                    score.insert(SlideshowFragment.this.getContext());
                 }
             }
         });
@@ -139,57 +134,65 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
+                    animalGenerate();
                 }else {
                     Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
                     high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    if( score.getScore_sounds() == null ){
-                        score.setScore_sounds(high_puntuation);
-                        score.insert(SlideshowFragment.this.getContext());
-                    }
+                    score.setScore_sounds(high_puntuation);
+                    score.insert(SlideshowFragment.this.getContext());
                 }
             }
         });
         binding.imageButtonSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(main.getApplicationContext(), sonido, Toast.LENGTH_SHORT).show();
-                MediaPlayer mediaplayer;
-                switch (sonido){
-                    case "leon":
-                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.leon);
-                        mediaplayer.start();
-                        break;
-                    case "gato":
-                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.gato);
-                        mediaplayer.start();
-                        break;
-                    case "oso":
-                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.oso);
-                        mediaplayer.start();
-                        break;
-                    case "mono":
-                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.mono);
-                        mediaplayer.start();
-                        break;
-                    case "puerquito":
-                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.puerquito);
-                        mediaplayer.start();
-                        break;
-                    case "elefante":
-                        mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.elefante);
-                        mediaplayer.start();
-                        break;
-                }
+                playSound(view, sonido);
             }
         });
         return binding.getRoot();
     }
 
-    @Override
-    public void onClick(View v) {
-
+    public void playSound( View v, String sonido){
+        //Toast.makeText(main.getApplicationContext(), sonido, Toast.LENGTH_SHORT).show();
+        MediaPlayer mediaplayer;
+        switch (sonido){
+            case "leon":
+                mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.leon);
+                mediaplayer.start();
+                break;
+            case "gato":
+                mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.gato);
+                mediaplayer.start();
+                break;
+            case "oso":
+                mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.oso);
+                mediaplayer.start();
+                break;
+            case "mono":
+                mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.mono);
+                mediaplayer.start();
+                break;
+            case "puerquito":
+                mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.puerquito);
+                mediaplayer.start();
+                break;
+            case "elefante":
+                mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.elefante);
+                mediaplayer.start();
+                break;
+        }
+    }
+    public String animalGenerate(){
+        numero = generarAleatorio();
+        sonido = animales[numero];
+        return sonido;
     }
     private int generarAleatorio(){
         return (int) ( Math.random() * animales.length );
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
