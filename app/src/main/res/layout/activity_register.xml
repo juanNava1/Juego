@@ -18,7 +18,7 @@
             android:layout_height="171dp"
             android:layout_gravity="center"
             android:contentDescription="@string/todo"
-            tools:srcCompat="@drawable/siete" />
+            tools:srcCompat="@drawable/tdah2" />
 
         <TextView
             android:id="@+id/register_header"
@@ -27,61 +27,6 @@
             android:text="@string/register_header"
             android:gravity="center_horizontal"
             android:textSize="20sp"/>
-
-        <EditText
-            android:id="@+id/EditID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/id"
-            android:inputType="textPersonName"
-            android:importantForAutofill="no"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
-
-        <EditText
-            android:id="@+id/PersonName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/name"
-            android:inputType="textPersonName"
-            android:importantForAutofill="no"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
-
-        <EditText
-            android:id="@+id/PersonOld"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/old"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
-
-        <EditText
-            android:id="@+id/Country"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/country"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
-
-        <EditText
-            android:id="@+id/State"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/state"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"/>
 
         <EditText
             android:id="@+id/PersonEmail"

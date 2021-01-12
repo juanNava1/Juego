@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_info" />
 
     <fragment
-        android:id="@+id/nav_perfil"
-        android:name="com.example.siluetas.ui.perfil.PerfilFragment"
-        android:label="@string/perfil"
-        tools:layout="@layout/fragment_perfil" />
-
-    <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.siluetas.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"

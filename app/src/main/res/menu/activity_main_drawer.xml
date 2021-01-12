@@ -10,10 +10,6 @@
             android:icon="@drawable/ic_info_foreground"
             android:title="@string/info" />
         <item
-            android:id="@+id/nav_perfil"
-            android:icon="@drawable/ic_person_foreground"
-            android:title="@string/perfil" />
-        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_pet_foreground"
             android:title="@string/menu_shadows" />
