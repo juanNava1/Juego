@@ -1,5 +1,6 @@
 package com.example.siluetas.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -20,26 +21,36 @@ import android.widget.Toast;
 import com.example.siluetas.Fragment.DialogLevel;
 import com.example.siluetas.Fragment.dialogGO;
 import com.example.siluetas.R;
+import com.example.siluetas.model.Score;
 import com.example.siluetas.ui.slideshow.SlideshowFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SumaActivity extends AppCompatActivity {
-public Integer num1, num2, resultado, vidas,RONDA,puntos;
-public TextView pts, marcador1, marcador2,marcavidas;
-public ImageView numero1, numero2,vida1,vida2,vida3;
-public Button btncom;
-public EditText input;
+    public Integer num1, num2, resultado, vidas, RONDA, puntos;
+    public TextView pts, marcador1, marcador2, marcavidas, puntuacion_alta;
+    public ImageView numero1, numero2,vida1,vida2,vida3;
+    public Button btncom;
+    public EditText input;
+    // puntajes
+    private Score score;
+    private String score_add, userid;
 
-FragmentTransaction transaction;
-Fragment fragmentGO, fragmentL;
+    FragmentTransaction transaction;
+    Fragment fragmentGO, fragmentL;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suma);
         pts = findViewById(R.id.tvpuntos);
-        marcavidas = findViewById(R.id.tvvidas);
-        marcador1 = findViewById(R.id.tvnum1);
-        marcador2 = findViewById(R.id.tvnum2);
+        //marcavidas = findViewById(R.id.tvvidas);
+        //marcador1 = findViewById(R.id.tvnum1);
+        //marcador2 = findViewById(R.id.tvnum2);
         numero1 = findViewById(R.id.ivnum1);
         numero2 = findViewById(R.id.ivnum2);
         vida1 = findViewById(R.id.imageViewvida1);
@@ -52,9 +63,31 @@ Fragment fragmentGO, fragmentL;
         vidas = 3;
         puntos=0;
 
-        marcavidas.setText(vidas+"");
+        //marcavidas.setText(vidas+" ");
 
+        score = new Score();
+        userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        puntuacion_alta = findViewById(R.id.puntuacion_alta);
+        /**
+         * Buscar score en firebase
+         */
+        Score.findScore(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    puntuacion_alta.setText(snapshot.child("score_add").getValue(String.class) + "");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         juego();
+
+
         btncom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +137,7 @@ Fragment fragmentGO, fragmentL;
         }else{
             if (resultado == res){
 
-                puntos=puntos + 10;
+                puntos=puntos + 1;
                 pts.setText(puntos+"");
                 RONDA = RONDA - 1;
                 Toast.makeText(this, "Bien hecho",Toast.LENGTH_LONG).show();
@@ -113,9 +146,8 @@ Fragment fragmentGO, fragmentL;
 
             }else{
                 vidas = vidas - 1;
-                marcavidas.setText(vidas+"");
+                //marcavidas.setText(vidas+"");
                 RONDA = RONDA - 1;
-                puntos=puntos - 5;
                 pts.setText(puntos+"");
                 Toast.makeText(this, "Vida perdida",Toast.LENGTH_LONG).show();
                 pierdeVida(vidas);
@@ -123,16 +155,10 @@ Fragment fragmentGO, fragmentL;
                 juego();
 
             }
-
         }
-
-
-
-
     }
 
     public  void limpiar() {
-
         input.setText("");
     }
 
@@ -156,8 +182,8 @@ Fragment fragmentGO, fragmentL;
                     num2 = crearnum2();
                     txtnum2 = num2 + "";
                     resultado = suma(num1,num2);
-                    marcador1.setText(txtnum1);
-                    marcador2.setText(txtnum2);
+                    //marcador1.setText(txtnum1);
+                    //marcador2.setText(txtnum2);
                     asignaImagen1(num1);
                     asignaImagen2(num2);
                 }
@@ -276,6 +302,8 @@ Fragment fragmentGO, fragmentL;
     }
 
     public void pierdeVida(Integer vida){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myref = database.getReference();
         if (vida==2){
             vida1.setVisibility(View.INVISIBLE);
         }
@@ -290,6 +318,13 @@ Fragment fragmentGO, fragmentL;
             transaction = getSupportFragmentManager().beginTransaction();
             fragmentGO = getSupportFragmentManager().findFragmentByTag("dialog");
             transaction.addToBackStack(null);
+
+            score_add = puntos.toString();
+            //score.setScore_shadows(score_shadows);
+            //score.setUserid(userid);
+            //score.update(GalleryFragment.this.getContext());
+            myref.child("scores").child(userid).child("score_add").setValue(score_add);
+
             cerrar();
 
 

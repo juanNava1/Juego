@@ -1,5 +1,6 @@
 package com.example.siluetas.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
@@ -16,21 +17,30 @@ import android.widget.Toast;
 import com.example.siluetas.Fragment.DialogLevel;
 import com.example.siluetas.Fragment.dialogGO;
 import com.example.siluetas.R;
+import com.example.siluetas.model.Score;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RestaActivity extends AppCompatActivity {
     public Integer num1, num2, resultado, vidas,RONDA,puntos;
-    public TextView pts;
+    public TextView pts, puntuacion_alta;
     public ImageView numero1, numero2,vida1,vida2,vida3;
     public Button btncom;
     public EditText input;
-
+    // puntajes
+    private Score score;
+    private String score_add, userid;
     FragmentTransaction transaction;
     Fragment fragmentGO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resta);
-        pts = findViewById(R.id.tvpuntosmul);
+        pts = findViewById(R.id.tvpuntosMul);
 
 
         numero1 = findViewById(R.id.ivnum1mul);
@@ -40,12 +50,31 @@ public class RestaActivity extends AppCompatActivity {
         vida3 = findViewById(R.id.imageViewvida3mul);
 
         btncom = findViewById(R.id.btncommul);
-        input = findViewById(R.id.etNumbermul);
+        input = findViewById(R.id.etNumberMul);
         RONDA = 10;
         vidas = 3;
         puntos=0;
 
+        score = new Score();
+        userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        puntuacion_alta = findViewById(R.id.puntuacion_alta);
+        /**
+         * Buscar score en firebase
+         */
+        Score.findScore(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    puntuacion_alta.setText(snapshot.child("score_res").getValue(String.class) + "");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         juego();
         btncom.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +121,7 @@ public class RestaActivity extends AppCompatActivity {
         }else{
             if (resultado == res){
 
-                puntos=puntos + 10;
+                puntos=puntos + 1;
                 pts.setText(puntos+"");
                 RONDA = RONDA - 1;
                 Toast.makeText(this, "Bien hecho",Toast.LENGTH_LONG).show();
@@ -102,7 +131,6 @@ public class RestaActivity extends AppCompatActivity {
                 vidas = vidas - 1;
 
                 RONDA = RONDA - 1;
-                puntos=puntos - 5;
                 pts.setText(puntos+"");
                 Toast.makeText(this, "Vida perdida",Toast.LENGTH_LONG).show();
                 pierdeVida(vidas);
@@ -262,6 +290,8 @@ public class RestaActivity extends AppCompatActivity {
     }
 
     public void pierdeVida(Integer vida){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myref = database.getReference();
         if (vida==2){
             vida1.setVisibility(View.INVISIBLE);
         }
@@ -276,6 +306,9 @@ public class RestaActivity extends AppCompatActivity {
             transaction = getSupportFragmentManager().beginTransaction();
             fragmentGO = getSupportFragmentManager().findFragmentByTag("dialog");
             transaction.addToBackStack(null);
+
+            score_add = puntos.toString();
+            myref.child("scores").child(userid).child("score_res").setValue(score_add);
             cerrar();
 
 
