@@ -55,6 +55,7 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myref = database.getReference();
+        
         /**
          * Buscar score en firebase
          */

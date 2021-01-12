@@ -128,7 +128,7 @@ public class GalleryFragment extends Fragment implements View.OnClickListener{
 
             esperar();
         }else {
-            Toast.makeText(main.getApplicationContext(),"Ese no es el animal", Toast.LENGTH_SHORT).show();
+            Toast.makeText(main.getApplicationContext(),"Ese no es el animal :c", Toast.LENGTH_SHORT).show();
             intentos=intentos-1;
             mensaje_intentos.setText("Tiene " + intentos + " intentos");
             usuario_animal.setText("");
