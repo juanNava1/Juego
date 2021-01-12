@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -52,7 +53,8 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         sonido = animales[numero];
         score = new Score();
         userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myref = database.getReference();
         /**
          * Buscar score en firebase
          */
@@ -81,10 +83,10 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
-                    userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    score.setScore_sounds(score_sounds);
-                    score.setUserid(userid);
-                    score.insert(SlideshowFragment.this.getContext());
+                    //score.setScore_sounds(score_sounds);
+                    //score.setUserid(userid);
+                    //score.insert(SlideshowFragment.this.getContext());
+                    myref.child("scores").child(userid).child("score_sounds").setValue(score_sounds);
                 }
             }
         });
@@ -99,9 +101,10 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(score_sounds);
-                    score.setUserid(userid);
-                    score.insert(SlideshowFragment.this.getContext());
+                    //score.setScore_sounds(score_sounds);
+                    //score.setUserid(userid);
+                    //score.insert(SlideshowFragment.this.getContext());
+                    myref.child("scores").child(userid).child("score_sounds").setValue(score_sounds);
                 }
             }
         });
@@ -116,9 +119,10 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(score_sounds);
-                    score.setUserid(userid);
-                    score.insert(SlideshowFragment.this.getContext());
+                    //score.setScore_sounds(score_sounds);
+                    //score.setUserid(userid);
+                    //score.insert(SlideshowFragment.this.getContext());
+                    myref.child("scores").child(userid).child("score_sounds").setValue(score_sounds);
                 }
             }
         });
@@ -133,9 +137,10 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(score_sounds);
-                    score.setUserid(userid);
-                    score.insert(SlideshowFragment.this.getContext());
+                    //score.setScore_sounds(score_sounds);
+                    //score.setUserid(userid);
+                    //score.insert(SlideshowFragment.this.getContext());
+                    myref.child("scores").child(userid).child("score_sounds").setValue(score_sounds);
                 }
             }
         });
@@ -150,9 +155,10 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(score_sounds);
-                    score.setUserid(userid);
-                    score.insert(SlideshowFragment.this.getContext());
+                    //score.setScore_sounds(score_sounds);
+                    //score.setUserid(userid);
+                    //score.insert(SlideshowFragment.this.getContext());
+                    myref.child("scores").child(userid).child("score_sounds").setValue(score_sounds);
                 }
             }
         });
@@ -167,9 +173,10 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(score_sounds);
-                    score.setUserid(userid);
-                    score.insert(SlideshowFragment.this.getContext());
+                    //score.setScore_sounds(score_sounds);
+                    //score.setUserid(userid);
+                    //score.insert(SlideshowFragment.this.getContext());
+                    myref.child("scores").child(userid).child("score_sounds").setValue(score_sounds);
                 }
             }
         });
