@@ -6,7 +6,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.siluetas.model.User;
 import com.example.siluetas.model.dao.ScoreDao;
+import com.example.siluetas.model.dao.UserDao;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -15,7 +17,7 @@ import com.google.firebase.storage.StorageReference;
 import com.example.siluetas.model.Score;
 
 
-@Database(entities = {Score.class}, version = 2)
+@Database(entities = {Score.class, User.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static AppDatabase getInstance(Context context) {
@@ -31,4 +33,6 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     public abstract ScoreDao scoreDao();
+
+    public abstract UserDao userDao();
 }

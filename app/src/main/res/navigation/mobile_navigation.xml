@@ -3,13 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_info">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.siluetas.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_info"
+        android:name="com.example.siluetas.ui.info.InfoFragment"
+        android:label="@string/info"
+        tools:layout="@layout/fragment_info" />
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.example.siluetas.ui.perfil.PerfilFragment"
+        android:label="@string/perfil"
+        tools:layout="@layout/fragment_perfil" />
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -22,4 +28,16 @@
         android:name="com.example.siluetas.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_operaciones"
+        android:name="com.example.siluetas.ui.operaciones.OperacionesFragment"
+        android:label="@string/operaciones"
+        tools:layout="@layout/fragment_operaciones" />
+
+    <fragment
+        android:id="@+id/nav_encuentra"
+        android:name="com.example.siluetas.ui.encuentra.EncuentraFragment"
+        android:label="@string/encuentra"
+        tools:layout="@layout/fragment_encuentra" />
 </navigation>

@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.perfil.PerfilFragment">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/perfilcompleto"
+            android:textSize="30sp"
+            />
+
+        <ImageView
+            android:id="@+id/iVFotoBus"
+            android:layout_width="196dp"
+            android:layout_height="171dp"
+            android:layout_gravity="center"
+            android:src="@drawable/usuario2"
+            android:contentDescription="@string/todo" />
+
+        <TextView
+            android:id="@+id/tVAreapEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombreR"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/tVDrpEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edadR"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/tVNombrepEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/paisR"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/tVGeneroEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/estadoR"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/tVFechapEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mailR"
+            android:textSize="25sp"
+            />
+
+        <TextView
+            android:id="@+id/tVEdadpEL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/passR"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+
+</ScrollView>

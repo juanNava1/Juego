@@ -20,17 +20,15 @@
     <string name="app_name">Siluetas</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Ingenieria en sistema computacionales</string>
+    <string name="nav_header_subtitle">ITTOLUCA</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
 
     <string name="perfil">Perfil</string>
-    <string name="encuentra">Encuentra</string>
+    <string name="encuentra">Scores</string>
+    <string name="operaciones"> Juego de Operaciones</string>
     <string name="menu_home">Inicio</string>
     <string name="menu_gallery">Juego de sombras</string>
     <string name="menu_slideshow">Juego de sonidos</string>
@@ -48,4 +46,38 @@
     <!-- Generic  -->
     <string name="aceptar">Aceptar</string>
     <string name="sound_on">Sound on</string>
+
+    <string name="comprobar">Comprobar</string>
+    <string name="puntos">Puntos:</string>
+    <string name="vidas">00</string>
+
+    <string name="perfilcompleto">Perfil del Jugador</string>
+    <string name="nombreR">Nombre</string>
+    <string name="edadR">Edad</string>
+    <string name="paisR">País</string>
+    <string name="estadoR">Estado</string>
+    <string name="mailR">e-mail</string>
+    <string name="passR">Contraseña</string>
+    <string name="todo">Todo</string>
+    <string name="id">Ingresa un ID</string>
+    <string name="info">Instrucciones</string>
+
+    <string name="InstruccionS">Instrucciones Juego de Sombras</string>
+    <string name="instruc">Vidas disponibles: 3</string>
+    <string name="instruc2">Deberas escribir correctamente el nombre del animal sombreado</string>
+
+
+    <string name="InstruccionesSonido">Instrucciones Juego de Sonidos</string>
+    <string name="instruc3">Vidas disponibles: 3</string>
+    <string name="instruc4">Deberas elegir correctamente el animal dependiendo el sonido</string>
+
+
+    <string name="InstruccionesMate">Instrucciones Juego Matematico</string>
+    <string name="instruc5">Vidas disponibles: 3</string>
+    <string name="instruc6">Deberas responder correctamente las operaciones matematicas</string>
+
+    <string name="InstruccionesGenerales">Instrucciones de Juego</string>
+
+
+
 </resources>

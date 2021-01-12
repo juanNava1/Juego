@@ -35,6 +35,7 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
     private String high_puntuation;
     private int puntuacion_mayor_actual;
     private Score score;
+    private int numero_generado=0;
 
     MainActivity main;
 
@@ -42,7 +43,8 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         SlideshowViewModel slideshowViewModel = ViewModelProviders.of(this).get(SlideshowViewModel.class);
         binding = FragmentSlideshowBinding.inflate(getLayoutInflater());
         main = (MainActivity) getParentFragment().getActivity();
-        int numero = generarAleatorio();
+        final int numero = generarAleatorio();
+        numero_generado=generarAleatorio();
         final String sonido = animales[numero];
 
         score = new Score();
@@ -101,7 +103,7 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         binding.mono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( sonido == "mono" ){
+                if ( sonido == "mono" ) {
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
@@ -152,6 +154,7 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         binding.imageButtonSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //Toast.makeText(main.getApplicationContext(), sonido, Toast.LENGTH_SHORT).show();
                 MediaPlayer mediaplayer;
                 switch (sonido){
@@ -189,6 +192,12 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
 
     }
+
+    private void establecer_sonido(int numeroA){
+        int id = getResources().getIdentifier(animales[numeroA], "raw", main.getPackageName());
+        binding.imageButtonSound.setImageResource(id);
+    }
+
     private int generarAleatorio(){
         return (int) ( Math.random() * animales.length );
     }
