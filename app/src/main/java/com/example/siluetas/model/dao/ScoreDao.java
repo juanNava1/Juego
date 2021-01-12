@@ -17,8 +17,9 @@ public interface ScoreDao {
     @Query("SELECT * FROM SCORES")
     List<Score> getAll();
 
-    @Query("SELECT * FROM SCORES WHERE UID = :id")
-    Score findById(int id);
+    @Query("SELECT * FROM SCORES WHERE user_id = :id")
+    Score findById(String id);
+
 
     @Insert
     void insert(Score score);
