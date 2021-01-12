@@ -9,20 +9,20 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.siluetas.database.AppDatabase;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Entity(tableName = "scores")
-public class Score{
+public class Score {
     @PrimaryKey(autoGenerate = true)
-    public int uid;
-    @ColumnInfo(name = "uuid")
-    public String uuid;
+    public int id;
+    //    @ColumnInfo(name = "uuid")
+//    public String uuid;
     //      User id
     @ColumnInfo(name = "user_id")
-    @NonNull
     private String userid;
     //      Puntaje de juego de sombras
     @ColumnInfo(name = "score_shadows")
@@ -48,21 +48,22 @@ public class Score{
     public Score() {
     }
 
-    public int getUid() {
-        return uid;
-    }
+//    public int getUid() {
+//        return uid;
+//    }
+//
+//    public void setUid(int uid) {
+//        this.uid = uid;
+//    }
+//
+//    public String getUuid() {
+//        return uuid;
+//    }
+//
+//    public void setUuid(String uuid) {
+//        this.uuid = uuid;
+//    }
 
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
     public String getUserid() {
         return userid;
     }
@@ -100,11 +101,10 @@ public class Score{
 
 
     public void insert(Context context) {
-        this.uuid = UUID.randomUUID().toString();
         //  SQLite
         AppDatabase.getInstance(context).scoreDao().insert(this);
         //  Firebase
-        AppDatabase.getFirebaseDbInstance().child("scores").child(this.uuid).setValue(this);
+        AppDatabase.getFirebaseDbInstance().child("scores").child(this.userid).setValue(this);
 
     }
 
@@ -113,10 +113,9 @@ public class Score{
         //  SQLite
         AppDatabase.getInstance(context).scoreDao().update(this);
         //  Firebase
-        AppDatabase.getFirebaseDbInstance().child("scores").child(this.uuid).setValue(this);
+        AppDatabase.getFirebaseDbInstance().child("scores").child(this.userid).setValue(this);
 
     }
-
 
 
     public static Score findById(Context context, String userid) {
@@ -127,7 +126,14 @@ public class Score{
         return AppDatabase.getInstance(context).scoreDao().findById(userid);
     }
 
-    public static Score findScore(Context context, String userid) {
-        return AppDatabase.getInstance(context).scoreDao().findById(userid);
+//    public static Score findScore(Context context, String userid) {
+//        return AppDatabase.getInstance(context).scoreDao().findById(userid);
+//    }
+
+    // FIND SCORE ON FIREBASE
+
+    public static DatabaseReference findScore(String userid) {
+        return AppDatabase.getFirebaseDbInstance().child("scores").child(userid);
     }
+
 }

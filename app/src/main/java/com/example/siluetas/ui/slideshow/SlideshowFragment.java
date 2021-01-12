@@ -34,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SlideshowFragment extends Fragment implements View.OnClickListener {
 
     private FragmentSlideshowBinding binding;
-    private String[] animales = { "leon", "gato", "oso", "mono", "puerquito", "elefante" };
+    private String[] animales = {"leon", "gato", "oso", "mono", "puerquito", "elefante"};
     private int puntuacion = 0;
     private String score_sounds, userid;
     private int puntuacion_mayor_actual;
@@ -53,26 +53,32 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         score = new Score();
         userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        /**
+         * Buscar score en firebase
+         */
+        Score.findScore(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    binding.puntuacionAlta.setText(snapshot.child("score_sounds").getValue(String.class) + "");
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-
-        if( score.findScore(SlideshowFragment.this.getContext(), userid) != null  ){
-            //binding.puntuacionAlta.setText("" + score.getScore_sounds());
-            Toast.makeText(main.getApplicationContext(), "No es nulo", Toast.LENGTH_SHORT).show();
-        }else{
-            //binding.puntuacionAlta.setText("0");
-            Toast.makeText(main.getApplicationContext(), "Nulo", Toast.LENGTH_SHORT).show();
-        }
+            }
+        });
 
         binding.leon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( sonido == "leon" ){
+                if (sonido == "leon") {
                     puntuacion++;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
-                }else {
+                } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
                     userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -85,15 +91,16 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         binding.gato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( sonido == "gato" ){
+                if (sonido == "gato") {
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
-                }else {
+                } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
                     score.setScore_sounds(score_sounds);
+                    score.setUserid(userid);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -101,15 +108,16 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         binding.oso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( sonido == "oso" ){
+                if (sonido == "oso") {
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
-                }else {
+                } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
                     score.setScore_sounds(score_sounds);
+                    score.setUserid(userid);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -117,15 +125,16 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         binding.mono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( sonido == "mono" ){
+                if (sonido == "mono") {
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
-                }else {
+                } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
                     score.setScore_sounds(score_sounds);
+                    score.setUserid(userid);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -133,15 +142,16 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         binding.puerquito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( sonido == "puerquito" ){
+                if (sonido == "puerquito") {
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
-                }else {
+                } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
                     score.setScore_sounds(score_sounds);
+                    score.setUserid(userid);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -149,15 +159,16 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         binding.elefante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( sonido == "elefante" ){
+                if (sonido == "elefante") {
                     puntuacion += 1;
                     binding.puntuacionActualNumero.setText("" + puntuacion);
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
-                }else {
+                } else {
                     Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
                     score.setScore_sounds(score_sounds);
+                    score.setUserid(userid);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -171,10 +182,10 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         return binding.getRoot();
     }
 
-    public void playSound( View v, String sonido){
+    public void playSound(View v, String sonido) {
         //Toast.makeText(main.getApplicationContext(), sonido, Toast.LENGTH_SHORT).show();
         MediaPlayer mediaplayer;
-        switch (sonido){
+        switch (sonido) {
             case "leon":
                 mediaplayer = MediaPlayer.create(main.getApplicationContext(), R.raw.leon);
                 mediaplayer.start();
@@ -201,13 +212,15 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                 break;
         }
     }
-    public String animalGenerate(){
+
+    public String animalGenerate() {
         numero = generarAleatorio();
         sonido = animales[numero];
         return sonido;
     }
-    private int generarAleatorio(){
-        return (int) ( Math.random() * animales.length );
+
+    private int generarAleatorio() {
+        return (int) (Math.random() * animales.length);
     }
 
     @Override
