@@ -15,7 +15,7 @@ import com.google.firebase.storage.StorageReference;
 import com.example.siluetas.model.Score;
 
 
-@Database(entities = {Score.class}, version = 2)
+@Database(entities = {Score.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static AppDatabase getInstance(Context context) {

@@ -23,7 +23,7 @@ public class Score{
     //      User id
     @ColumnInfo(name = "user_id")
     @NonNull
-    private int userid;
+    private String userid;
     //      Puntaje de juego de sombras
     @ColumnInfo(name = "score_shadows")
     @Nullable
@@ -38,11 +38,11 @@ public class Score{
     private String score_operations;
 
 
-    public Score(String score_shadows, String score_sounds, String score_operations, int user_id) {
+    public Score(String score_shadows, String score_sounds, String score_operations, String userid) {
         this.score_shadows = score_shadows;
         this.score_sounds = score_sounds;
         this.score_operations = score_operations;
-        this.userid = user_id;
+        this.userid = userid;
     }
 
     public Score() {
@@ -63,11 +63,11 @@ public class Score{
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
-    public int getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 
@@ -118,4 +118,16 @@ public class Score{
     }
 
 
+
+    public static Score findById(Context context, String userid) {
+        return AppDatabase.getInstance(context).scoreDao().findById(userid);
+    }
+
+    public static Score findUser(Context context, String userid) {
+        return AppDatabase.getInstance(context).scoreDao().findById(userid);
+    }
+
+    public static Score findScore(Context context, String userid) {
+        return AppDatabase.getInstance(context).scoreDao().findById(userid);
+    }
 }

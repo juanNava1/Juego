@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.transition.Slide;
 
 import com.example.siluetas.LoginActivity;
 import com.example.siluetas.MainActivity;
@@ -24,6 +25,10 @@ import com.example.siluetas.databinding.FragmentSlideshowBinding;
 import com.example.siluetas.model.Score;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class SlideshowFragment extends Fragment implements View.OnClickListener {
@@ -31,7 +36,7 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
     private FragmentSlideshowBinding binding;
     private String[] animales = { "leon", "gato", "oso", "mono", "puerquito", "elefante" };
     private int puntuacion = 0;
-    private String score_sounds, high_puntuation;
+    private String score_sounds, userid;
     private int puntuacion_mayor_actual;
     private Score score;
     private String sonido;
@@ -46,6 +51,18 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
         numero = generarAleatorio();
         sonido = animales[numero];
         score = new Score();
+        userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+
+
+        if( score.findScore(SlideshowFragment.this.getContext(), userid) != null  ){
+            //binding.puntuacionAlta.setText("" + score.getScore_sounds());
+            Toast.makeText(main.getApplicationContext(), "No es nulo", Toast.LENGTH_SHORT).show();
+        }else{
+            //binding.puntuacionAlta.setText("0");
+            Toast.makeText(main.getApplicationContext(), "Nulo", Toast.LENGTH_SHORT).show();
+        }
 
         binding.leon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +73,11 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
                 }else {
-                    Toast.makeText(main.getApplicationContext(), score_sounds, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
                     score_sounds = binding.puntuacionActualNumero.getText().toString();
+                    userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     score.setScore_sounds(score_sounds);
+                    score.setUserid(userid);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -72,9 +91,9 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
                 }else {
-                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
-                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(high_puntuation);
+                    Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
+                    score_sounds = binding.puntuacionActualNumero.getText().toString();
+                    score.setScore_sounds(score_sounds);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -88,9 +107,9 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
                 }else {
-                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
-                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(high_puntuation);
+                    Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
+                    score_sounds = binding.puntuacionActualNumero.getText().toString();
+                    score.setScore_sounds(score_sounds);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -104,9 +123,9 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
                 }else {
-                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
-                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(high_puntuation);
+                    Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
+                    score_sounds = binding.puntuacionActualNumero.getText().toString();
+                    score.setScore_sounds(score_sounds);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -120,9 +139,9 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
                 }else {
-                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
-                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(high_puntuation);
+                    Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
+                    score_sounds = binding.puntuacionActualNumero.getText().toString();
+                    score.setScore_sounds(score_sounds);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
@@ -136,9 +155,9 @@ public class SlideshowFragment extends Fragment implements View.OnClickListener 
                     Toast.makeText(main.getApplicationContext(), "¡Perfecto! :D", Toast.LENGTH_SHORT).show();
                     animalGenerate();
                 }else {
-                    Toast.makeText(main.getApplicationContext(), "¡Error! Juego terminado", Toast.LENGTH_SHORT).show();
-                    high_puntuation = binding.puntuacionActualNumero.getText().toString();
-                    score.setScore_sounds(high_puntuation);
+                    Toast.makeText(main.getApplicationContext(), "Error, juego terminado", Toast.LENGTH_SHORT).show();
+                    score_sounds = binding.puntuacionActualNumero.getText().toString();
+                    score.setScore_sounds(score_sounds);
                     score.insert(SlideshowFragment.this.getContext());
                 }
             }
