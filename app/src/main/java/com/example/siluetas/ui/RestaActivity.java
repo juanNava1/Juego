@@ -116,7 +116,7 @@ public class RestaActivity extends AppCompatActivity {
         respuesta = input.getText().toString();
 
         res = Integer.parseInt(respuesta);
-        if (respuesta.isEmpty()){
+        if ((respuesta ==null) && respuesta.isEmpty()){
             Toast.makeText(this, "Ingresa tu resultado",Toast.LENGTH_SHORT).show();
         }else{
             if (resultado == res){

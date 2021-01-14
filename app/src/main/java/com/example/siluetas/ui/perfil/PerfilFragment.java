@@ -11,11 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.siluetas.MainActivity;
 import com.example.siluetas.R;
 import com.example.siluetas.model.Score;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +32,7 @@ import java.util.List;
 public class PerfilFragment extends Fragment {
 
     private PerfilViewModel perfilViewModel;
-
+TextView nombre,edad,pais,mail;
     //layout
     private ListView lis;
 
@@ -39,7 +42,7 @@ public class PerfilFragment extends Fragment {
 
     //Adaptador
     private ArrayAdapter<CharSequence> sinDatos;
-
+String userid;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,16 +56,21 @@ public class PerfilFragment extends Fragment {
                 textView.setText(s);
             }
         });
-        return root;
-    }
+        nombre = (TextView) root.findViewById(R.id.tVAreapEL);
+        edad = (TextView) root.findViewById(R.id.tVDrpEL);
+        pais = (TextView) root.findViewById(R.id.tVNombrepEL);
+        mail = (TextView) root.findViewById(R.id.tVFechapEL);
+        userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//conexion con firebase
+        bd = FirebaseDatabase.getInstance();
+        //Obtencion de la tabla
+        //se colocala el nombre de la coleccion
+        tabla = bd.getReference("users");
 
-    private void buscar(String nombreCampo, String valor){
+        //Es el texto que mostrara la lista si no hay datos
+        sinDatos = ArrayAdapter.createFromResource(getActivity(),R.array.sinDatos, android.R.layout.simple_list_item_1);
 
-        //para buscar un dato especifico deberemos especificar
-
-        Query consulta = tabla.orderByChild(nombreCampo).equalTo(valor);
-
-        //Obtenemos todos los datos dentro de scores, pues es lo que se definio en tabla
+        lis = root.findViewById(R.id.lVListascore);
         tabla.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -70,30 +78,23 @@ public class PerfilFragment extends Fragment {
                 //dataSnapshot es la colleccion de los datos
                 if(dataSnapshot.exists()){
 
-                    List<Score> scores = new ArrayList<>();
+
                     //Como son mas de un dato, hay que separarlo
                     //para ello se usa getChilderen
                     for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-
+                        String s1 =  dataSnapshot1.child("uuid").getValue().toString();
                         //objeto donde se almacenaran los datos
-                        Score score = dataSnapshot.getValue(Score.class);
-                        scores.add(score);
+                        if (s1.equals(userid)){
+                            nombre.setText(dataSnapshot1.child("nombre").getValue().toString());
+                            edad.setText(dataSnapshot1.child("edad").getValue().toString());
+                            pais.setText(dataSnapshot1.child("pais").getValue().toString());
+                            mail.setText(dataSnapshot1.child("email").getValue().toString());
+                        }
+
 
                     }
 
-                    //Verificamos si existenm datos
-                    if(!scores.isEmpty()){
 
-                        //convertimos la lista para poder agregarlo al list view
-                        ArrayAdapter<Score> adaptadorScore = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,scores);
-                        lis.setAdapter(adaptadorScore);
-
-                    }
-                    else{
-
-                        lis.setAdapter(sinDatos);
-
-                    }
 
                 }
 
@@ -109,5 +110,10 @@ public class PerfilFragment extends Fragment {
 
         });
 
+
+
+        return root;
     }
+
+
 }

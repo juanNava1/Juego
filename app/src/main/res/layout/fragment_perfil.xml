@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.perfil.PerfilFragment">
+    tools:context=".ui.perfil.PerfilFragment"
+    android:id="@+id/listar_perfil">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,13 +51,7 @@
             android:textSize="25sp"
             />
 
-        <TextView
-            android:id="@+id/tVGeneroEL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/estadoR"
-            android:textSize="25sp"
-            />
+
 
         <TextView
             android:id="@+id/tVFechapEL"
@@ -66,13 +61,7 @@
             android:textSize="25sp"
             />
 
-        <TextView
-            android:id="@+id/tVEdadpEL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/passR"
-            android:textSize="25sp"
-            />
+
     </LinearLayout>
 
 </ScrollView>

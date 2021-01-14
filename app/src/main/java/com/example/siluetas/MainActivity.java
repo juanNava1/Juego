@@ -11,6 +11,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseUser;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -20,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-
+    FragmentTransaction transaction;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -38,13 +41,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Bundle bundle = new Bundle(); String myMessage = "Stackoverflow is cool!";
-        bundle.putString("message", myMessage );
+       /* FragmentManager manager = this.getSupportFragmentManager();
+        String var1= (String) getIntent().getSerializableExtra("usuario");
+        Bundle bundle = new Bundle();
+        bundle.putString("uid", var1);
         PerfilFragment fragInfo = new PerfilFragment();
         fragInfo.setArguments(bundle);
-        transaction.replace(R.id.fragment_single, fragInfo);
-        transaction.commit();
-        String var1= (String) getIntent().getSerializableExtra("usuario");
+
+        transaction = manager.beginTransaction();
+        transaction.replace(R.id.listar_perfil, fragInfo);
+
+        transaction.commit();*/
+
+
+
 
          DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -57,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
     }
 
     @Override
