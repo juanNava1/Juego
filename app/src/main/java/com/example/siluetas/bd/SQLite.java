@@ -27,13 +27,9 @@ public class SQLite  {
         sql.close();
     }
 
-    public boolean addRegistroUsuario(int id, String nombre, String edad, String pais, String email, String password, String image
+    public boolean addRegistroUsuario( String email, String password, String image
     ){
         ContentValues cv = new ContentValues();
-        cv.put("ID", id);
-        cv.put("NOMBRE", nombre);
-        cv.put("EDAD", edad);
-        cv.put("PAIS", pais);
         cv.put("EMAIL", email);
         cv.put("PASSWORD", password);
         cv.put("IMAGEN", image);

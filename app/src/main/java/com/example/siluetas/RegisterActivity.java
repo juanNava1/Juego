@@ -97,26 +97,25 @@ public class RegisterActivity extends AppCompatActivity {
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (id.getText().toString().equals("")||name.getText().toString().equals("") ||
-                        edad.getText().toString().equals("") || pais.getText().toString().equals("") || emai.getText().toString().equals("")
+                if ( emai.getText().toString().equals("")
                         || pass.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Requiere los campos", Toast.LENGTH_LONG).show();
                 } else {
-                    int idd = Integer.parseInt(id.getText().toString());
-                    String nom = name.getText().toString().toUpperCase();
-                    user.setNombre(nom); // Tada! :o asi con todos? Yes
-                    String fech = edad.getText().toString().toUpperCase();
+                    //int idd = Integer.parseInt(id.getText().toString());
+                    //String nom = name.getText().toString().toUpperCase();
+                   // user.setNombre(nom); // Tada! :o asi con todos? Yes
+                   // String fech = edad.getText().toString().toUpperCase();
                     // Le estabas pasando algo que aún no tenías a no ya vi en que la cague xD
-                    user.setEdad(fech);
-                    String paiss = pais.getText().toString().toUpperCase();
-                    user.setPais(paiss);
+                   // user.setEdad(fech);
+                   // String paiss = pais.getText().toString().toUpperCase();
+                   // user.setPais(paiss);
                     String email = emai.getText().toString().toUpperCase();
                     user.setEmail(email);
                     String pas = pass.getText().toString().toUpperCase();
                     user.setPassword(pas);
                    // user.insert(RegisterActivity.this);
                     sqlite.abrir();
-                    if (sqlite.addRegistroUsuario(idd, nom, fech, paiss, email, pas, img)) {
+                    if (sqlite.addRegistroUsuario( email, pas, img)) {
                         Toast.makeText(getApplicationContext(), "Datos almacenados", Toast.LENGTH_LONG).show();
                         starRegister();
                     } else {
@@ -133,11 +132,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     private void starRegister(){
-        final String nombre = name.getText().toString().trim();
+//        final String nombre = name.getText().toString().trim();
         final String mail = emai.getText().toString().trim();
         String contra = pass.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(nombre) && !TextUtils.isEmpty(mail) && !TextUtils.isEmpty(contra)){
+        if(!TextUtils.isEmpty(mail) && !TextUtils.isEmpty(contra)){
             mProgress.setMessage("Registrando, espere un momento...");
             mProgress.show();
             mAuth.createUserWithEmailAndPassword(mail, contra)
