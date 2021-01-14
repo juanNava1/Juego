@@ -33,22 +33,38 @@ public class Score {
     @Nullable
     private String score_sounds;
     //      Puntaje de operaciones aritméticas
-    @ColumnInfo(name = "score_operations")
+    @ColumnInfo(name = "score_res")
     @Nullable
-    private String score_operations;
+    private String score_res;
 
+    @ColumnInfo(name = "score_add")
+    @Nullable
+    private String score_add;
 
-    public Score(String score_shadows, String score_sounds, String score_operations, String userid) {
+    public Score(String score_shadows, String score_sounds, String score_add, String userid, String score_res) {
         this.score_shadows = score_shadows;
         this.score_sounds = score_sounds;
-        this.score_operations = score_operations;
+        this.score_add = score_add;
         this.userid = userid;
+        this.score_res = score_res;
     }
 
     public Score() {
     }
 
-//    public int getUid() {
+    @Override
+    public String toString() {
+        return "Score{" +
+                "id=" + id +
+                ", userid='" + userid + '\'' +
+                ", score_shadows='" + score_shadows + '\'' +
+                ", score_sounds='" + score_sounds + '\'' +
+                ", score_res='" + score_res + '\'' +
+                ", score_add='" + score_add + '\'' +
+                '}';
+    }
+
+    //    public int getUid() {
 //        return uid;
 //    }
 //
@@ -90,15 +106,31 @@ public class Score {
         this.score_sounds = score_sounds;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Nullable
-    public String getScore_operations() {
-        return score_operations;
+    public String getScore_res() {
+        return score_res;
     }
 
-    public void setScore_operations(@Nullable String score_operations) {
-        this.score_operations = score_operations;
+    public void setScore_res(@Nullable String score_res) {
+        this.score_res = score_res;
     }
 
+    @Nullable
+    public String getScore_add() {
+        return score_add;
+    }
+
+    public void setScore_add(@Nullable String score_add) {
+        this.score_add = score_add;
+    }
 
     public void insert(Context context) {
         //  SQLite

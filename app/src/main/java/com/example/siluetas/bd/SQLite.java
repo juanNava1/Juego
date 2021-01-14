@@ -30,7 +30,7 @@ public class SQLite  {
     public boolean addRegistroUsuario(int id, String nombre, String edad, String pais, String email, String password, String image
     ){
         ContentValues cv = new ContentValues();
-        cv.put("ID", id);
+        //cv.put("ID", id);
         cv.put("NOMBRE", nombre);
         cv.put("EDAD", edad);
         cv.put("PAIS", pais);
@@ -73,6 +73,10 @@ public class SQLite  {
             }while (cursor.moveToNext());
         }
         return ListData;
+    }
+
+    public Cursor getRegistroscore(){
+        return db.rawQuery("SELECT * FROM SCORE", null);
     }
 
 }

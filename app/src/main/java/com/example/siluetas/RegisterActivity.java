@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.File;
 import java.io.IOException;
@@ -102,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                         || pass.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Requiere los campos", Toast.LENGTH_LONG).show();
                 } else {
-                    int idd = Integer.parseInt(id.getText().toString());
+                    int idd = 0;
                     String nom = name.getText().toString().toUpperCase();
                     user.setNombre(nom); // Tada! :o asi con todos? Yes
                     String fech = edad.getText().toString().toUpperCase();
@@ -114,7 +115,8 @@ public class RegisterActivity extends AppCompatActivity {
                     user.setEmail(email);
                     String pas = pass.getText().toString().toUpperCase();
                     user.setPassword(pas);
-                    user.insert(RegisterActivity.this);
+
+
                     sqlite.abrir();
                     if (sqlite.addRegistroUsuario(idd, nom, fech, paiss, email, pas, img)) {
                         Toast.makeText(getApplicationContext(), "Datos almacenados", Toast.LENGTH_LONG).show();
@@ -138,6 +140,8 @@ public class RegisterActivity extends AppCompatActivity {
         String contra = pass.getText().toString().trim();
 
         if(!TextUtils.isEmpty(nombre) && !TextUtils.isEmpty(mail) && !TextUtils.isEmpty(contra)){
+
+
             mProgress.setMessage("Registrando, espere un momento...");
             mProgress.show();
             mAuth.createUserWithEmailAndPassword(mail, contra)
@@ -146,6 +150,8 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             mProgress.dismiss();
                             if(task.isSuccessful()){
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUiser(user.getUid());
 
                                 Toast.makeText(RegisterActivity.this,"Se ha registrado el usuario con el email: "+ emai.getText(),Toast.LENGTH_LONG).show();
                             }else{
@@ -155,10 +161,15 @@ public class RegisterActivity extends AppCompatActivity {
                             mProgress.dismiss();
 
                         }
+
+
                     });
+
         }
     }
-
+    private void updateUiser(String  ui) {
+        user.insert(RegisterActivity.this,ui);
+    }
     private File createImageFile() throws IOException{
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "FP_" + timeStamp + "_";

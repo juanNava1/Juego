@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.siluetas.model.User;
+import com.example.siluetas.ui.perfil.PerfilFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -34,7 +37,16 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
+        Bundle bundle = new Bundle(); String myMessage = "Stackoverflow is cool!";
+        bundle.putString("message", myMessage );
+        PerfilFragment fragInfo = new PerfilFragment();
+        fragInfo.setArguments(bundle);
+        transaction.replace(R.id.fragment_single, fragInfo);
+        transaction.commit();
+        String var1= (String) getIntent().getSerializableExtra("usuario");
+
+         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
