@@ -106,8 +106,9 @@ public class User {
         return nombre != null && edad != null && pais != null && email != null && password != null;
     }
 
-    public void insert(Context context) {
-        this.uuid = UUID.randomUUID().toString();
+    public void insert(Context context, String uuid) {
+        this.uuid = uuid;
+        //this.uuid = UUID.randomUUID().toString();
         //  SQLite
         AppDatabase.getInstance(context).userDao().insert(this);
         //  Firebase

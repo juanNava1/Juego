@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class sql extends SQLiteOpenHelper {
 
     private static final String database = "usuarios";
-    private static final int VERSION = 1;
+    private static final int VERSION = 102;
 
     private final String tUsuarios = "CREATE TABLE USUARIOS ("+
             "EMAIL TEXT NOT NULL, "+
@@ -27,10 +27,13 @@ public class sql extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
         if (newVersion > oldVersion){
             db.execSQL("DROP TABLE IF EXISTS USUARIOS");
             db.execSQL(tUsuarios);
+
         }
+
     }
 }
 

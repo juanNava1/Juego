@@ -27,10 +27,13 @@ public class SQLite  {
         sql.close();
     }
 
-    public boolean addRegistroUsuario( String email, String password, String image
+    public boolean addRegistroUsuario(int id, String nombre, String edad, String pais, String email, String password, String image
     ){
         ContentValues cv = new ContentValues();
-
+        cv.put("ID", id);
+        cv.put("NOMBRE", nombre);
+        cv.put("EDAD", edad);
+        cv.put("PAIS", pais);
         cv.put("EMAIL", email);
         cv.put("PASSWORD", password);
         cv.put("IMAGEN", image);
@@ -48,8 +51,12 @@ public class SQLite  {
 
         if (cursor.moveToFirst()){
             do {
-                item += "Email: ["+ cursor.getString(3) + "]\r\n";
-                item += "Password: ["+ cursor.getString(4 ) + "]\r\n";
+                item += "Id: ["+ cursor.getInt(0) + "]\r\n";
+                item += "Nombre: ["+ cursor.getString(1 ) + "]\r\n";
+                item += "Edad: ["+ cursor.getString(2) + "]\r\n";
+                item += "Pais: ["+ cursor.getString(3 ) + "]\r\n";
+                item += "Email: ["+ cursor.getString(4) + "]\r\n";
+                item += "Password: ["+ cursor.getString(5 ) + "]\r\n";
                 ListData.add(item);
                 item="";
 
