@@ -56,12 +56,12 @@ public class RegisterActivity extends AppCompatActivity {
         sqlite = new SQLite(getApplicationContext());
         aceptar = (Button) findViewById(R.id.registerme);
         cancelar = (Button) findViewById(R.id.back_to_login);
-        name = (EditText) findViewById(R.id.PersonName);
-        edad = (EditText) findViewById(R.id.PersonOld);
-        pais = (EditText) findViewById(R.id.Country);
+        //name = (EditText) findViewById(R.id.PersonName);
+       // edad = (EditText) findViewById(R.id.PersonOld);
+       // pais = (EditText) findViewById(R.id.Country);
         emai = (EditText) findViewById(R.id.PersonEmail);
         pass = (EditText) findViewById(R.id.PersonPasword);
-        id = (EditText) findViewById(R.id.EditID);
+        //id = (EditText) findViewById(R.id.EditID);
         imagen = (ImageView) findViewById(R.id.imageViewPersona);
         user = new User() ;
         imagen.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                     user.setEmail(email);
                     String pas = pass.getText().toString().toUpperCase();
                     user.setPassword(pas);
-                    user.insert(RegisterActivity.this);
+                   // user.insert(RegisterActivity.this);
                     sqlite.abrir();
                     if (sqlite.addRegistroUsuario(idd, nom, fech, paiss, email, pas, img)) {
                         Toast.makeText(getApplicationContext(), "Datos almacenados", Toast.LENGTH_LONG).show();

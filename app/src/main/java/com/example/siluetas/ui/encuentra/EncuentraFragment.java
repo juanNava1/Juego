@@ -82,7 +82,7 @@ public class EncuentraFragment extends Fragment {
 
                         //objeto donde se almacenaran los datos
                         Score score = new Score();
-                        score.setId(dataSnapshot1.child("id").getValue(Integer.class));
+                        //score.setId(dataSnapshot1.child("id").getValue(Integer.class));
                         score.setScore_shadows(dataSnapshot1.child("score_shadows").getValue(String.class));
                         score.setScore_sounds(dataSnapshot1.child("score_sounds").getValue(String.class));
                         score.setScore_res(dataSnapshot1.child("score_res").getValue(String.class));

@@ -8,6 +8,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.siluetas.RegisterActivity;
 import com.example.siluetas.database.AppDatabase;
 
 import java.util.UUID;
@@ -108,7 +109,7 @@ public class User {
 
     public void insert(Context context, String uuid) {
         this.uuid = uuid;
-        //this.uuid = UUID.randomUUID().toString();
+        this.uuid = UUID.randomUUID().toString();
         //  SQLite
         AppDatabase.getInstance(context).userDao().insert(this);
         //  Firebase

@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("message", myMessage );
         PerfilFragment fragInfo = new PerfilFragment();
         fragInfo.setArguments(bundle);
-        transaction.replace(R.id.fragment_single, fragInfo);
-        transaction.commit();
+//        transaction.replace(R.id.fragment_single, fragInfo);
+       // transaction.commit();
         String var1= (String) getIntent().getSerializableExtra("usuario");
 
          DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_info,
-                R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_operaciones, R.id.nav_encuentra)
+                R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_operaciones, R.id.nav_encuentra, R.id.nav_perfil)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
