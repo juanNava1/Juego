@@ -131,8 +131,15 @@ public class SumaActivity extends AppCompatActivity {
         //String numCadena= String.valueOf(numEntero);
         //String numCadena = "1";
         //int numEntero = Integer.parseInt(numCadena);
-        res = Integer.parseInt(respuesta);
-        if (respuesta.isEmpty()){
+
+        try {
+            res = Integer.parseInt(respuesta);
+
+        }catch (Exception e){
+            res=-1;
+        }
+
+        if ((respuesta ==null) || respuesta.isEmpty()){
             Toast.makeText(this, "Ingresa tu resultado",Toast.LENGTH_SHORT).show();
         }else{
             if (resultado == res){

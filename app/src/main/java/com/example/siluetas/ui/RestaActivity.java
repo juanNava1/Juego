@@ -114,9 +114,14 @@ public class RestaActivity extends AppCompatActivity {
         Integer res;
 
         respuesta = input.getText().toString();
+            try {
+                res = Integer.parseInt(respuesta);
 
-        res = Integer.parseInt(respuesta);
-        if ((respuesta ==null) && respuesta.isEmpty()){
+            }catch (Exception e){
+                res=-1;
+            }
+
+        if ((respuesta ==null) || respuesta.isEmpty()){
             Toast.makeText(this, "Ingresa tu resultado",Toast.LENGTH_SHORT).show();
         }else{
             if (resultado == res){

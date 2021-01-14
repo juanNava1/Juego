@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -170,7 +171,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void updateUiser(String  ui) {
         user.insert(RegisterActivity.this,ui);
     }
-    private File createImageFile() throws IOException{
+   private File createImageFile() throws IOException{
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "FP_" + timeStamp + "_";
         File storageDir = getApplication().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -180,6 +181,8 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "o"+ img,Toast.LENGTH_LONG).show();
         return image;
     }
+
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
